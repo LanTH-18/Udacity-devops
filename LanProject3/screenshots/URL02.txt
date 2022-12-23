@@ -1,0 +1,2 @@
+http://udapeople-07f27b3.s3-website-us-east-1.amazonaws.com/
+http:/d2cxdfl6lpnif9.cloudfront.net/
