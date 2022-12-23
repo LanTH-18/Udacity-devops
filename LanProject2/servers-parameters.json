@@ -1,0 +1,11 @@
+[
+	{
+		"ParameterKey": "EnvironmentName",
+		"ParameterValue": "Lans-project"
+	},
+	{
+		"ParameterKey": "CodeBucketName",
+		"ParameterValue": "codebucketname-lans"
+	}
+]
+ 
