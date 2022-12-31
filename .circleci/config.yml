@@ -572,6 +572,8 @@ workflows:
           requires: [build-frontend]
       - deploy_and_notify:
           context: slack-secrets
+          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+          
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
