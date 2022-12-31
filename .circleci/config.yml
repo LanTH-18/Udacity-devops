@@ -522,7 +522,7 @@ jobs:
           name: Get old stack workflow id
           command: |
             # Fetch the Old workflow ID
-            OldWorkflowID=$(curl --insecure https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/${CIRCLE_WORKFLOW_ID:0:7})
+            OldWorkflowID=$(aws cloudformation list-exports --query "Exports[?Name==\`WorkflowID\`].Value" --no-paginate --output text)
             echo OldWorkflowID: $OldWorkflowID
             echo Current Workflow ID: ${CIRCLE_WORKFLOW_ID:0:7}
             # Fetch the stack names
@@ -532,7 +532,7 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
-            OldWorkflowID=$(curl --insecure https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/${CIRCLE_WORKFLOW_ID:0:7})
+            OldWorkflowID=$(aws cloudformation list-exports --query "Exports[?Name==\`WorkflowID\`].Value" --no-paginate --output text)
             Stacks=$(cat ~/stacks.txt)
             echo OldWorkflowID: $OldWorkflowID
             echo Stack names: ${Stacks[@]}
