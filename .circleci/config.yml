@@ -44,11 +44,14 @@ jobs:
   deploy_and_notify:
     docker:
       - image: 'cimg/base:stable'
-    steps:
+     steps:
       - run: echo "deploy my app"
       - slack/notify:
           event: fail
           template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_
 
   build-frontend:
     docker:
