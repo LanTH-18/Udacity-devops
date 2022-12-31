@@ -253,12 +253,12 @@ jobs:
           command: |
             cat ~/project/backend/migrations_dump.txt
             cd backend
-            if grep -q "has been executed successfully." migrations_dump.txt
+            if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-              SUCCESS=$(curl https://kvdb.io/63vbmnEzTac6vpR5QLJMK9/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1')
+              SUCCESS=$(curl https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1')
               echo "MIGRATION WAS SUCCESSFUL"
             else
-              SUCCESS=$(curl https://kvdb.io/63vbmnEzTac6vpR5QLJMK9/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '0')
+              SUCCESS=$(curl https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '0')
               echo "MIGRATION FAILED"
             fi
       - destroy-environment:
