@@ -32,7 +32,7 @@ commands:
           when: on_fail
           command: |
             echo "Reverting Database  ########### "
-            SUCCESS=$(curl --insecure https://kvdb.io/63vbmnEzTac6vpR5QLJMK9/migration_<<parameters.workflow_id>>)
+            SUCCESS=$(curl --insecure https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/migration_<<parameters.workflow_id>>)
             if (( $SUCCESS == 1 ));
             then
               cd ~/project/backend
@@ -188,7 +188,7 @@ jobs:
           command: |
             BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" --output text)
             echo Backend IP: $BACKEND_IP
-            curl https://kvdb.io/63vbmnEzTac6vpR5QLJMK9/${CIRCLE_WORKFLOW_ID:0:7} -d $BACKEND_IP
+            curl https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/${CIRCLE_WORKFLOW_ID:0:7} -d $BACKEND_IP
       - run: yum -y install tar gzip
       - persist_to_workspace:
           root: ~/
@@ -287,7 +287,7 @@ jobs:
   #     - run:
   #         name: Get backend url and Deploy Frontend Object
   #         command: |
-  #           export BACKEND_IP=$(curl --insecure https://kvdb.io/63vbmnEzTac6vpR5QLJMK9/${CIRCLE_WORKFLOW_ID:0:7})
+  #           export BACKEND_IP=$(curl --insecure https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/${CIRCLE_WORKFLOW_ID:0:7})
   #           export API_URL="http://${BACKEND_IP}:3030"
   #           echo "API_URL = ${API_URL}"
   #           echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
@@ -494,7 +494,7 @@ jobs:
             echo $OldWorkflowID >> ~/OldWorkflowID.txt
             cat ~/OldWorkflowID.txt
             
-            curl https://kvdb.io/63vbmnEzTac6vpR5QLJMK9/${CIRCLE_WORKFLOW_ID:0:7} -d $OldWorkflowID
+            curl https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/${CIRCLE_WORKFLOW_ID:0:7} -d $OldWorkflowID
 
             aws cloudformation deploy \
               --template-file .circleci/files/cloudfront.yml \
@@ -522,7 +522,7 @@ jobs:
           name: Get old stack workflow id
           command: |
             # Fetch the Old workflow ID
-            OldWorkflowID=$(curl --insecure https://kvdb.io/63vbmnEzTac6vpR5QLJMK9/${CIRCLE_WORKFLOW_ID:0:7})
+            OldWorkflowID=$(curl --insecure https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/${CIRCLE_WORKFLOW_ID:0:7})
             echo OldWorkflowID: $OldWorkflowID
             echo Current Workflow ID: ${CIRCLE_WORKFLOW_ID:0:7}
             # Fetch the stack names
@@ -532,7 +532,7 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
-            OldWorkflowID=$(curl --insecure https://kvdb.io/63vbmnEzTac6vpR5QLJMK9/${CIRCLE_WORKFLOW_ID:0:7})
+            OldWorkflowID=$(curl --insecure https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/${CIRCLE_WORKFLOW_ID:0:7})
             Stacks=$(cat ~/stacks.txt)
             echo OldWorkflowID: $OldWorkflowID
             echo Stack names: ${Stacks[@]}
