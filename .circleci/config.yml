@@ -144,9 +144,9 @@ jobs:
           name: Scan the Backend
           command: |
             cd backend
-            npm update
+            npm update mkdirp --depth
             npm i
-            npm audit fix --audit-level=critical --force
+            npm audit fix --force
             npm audit --audit-level=critical
 
   deploy-infrastructure:
