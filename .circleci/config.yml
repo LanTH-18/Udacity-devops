@@ -45,12 +45,11 @@ jobs:
     docker:
       - image: 'cimg/base:stable'
     steps:
-      - run: deploy my app
+      - run: echo "deploy my app"
       - slack/notify:
           event: fail
           template: basic_fail_1
           channel: C04H34X6N11
-          step_name: run
       - slack/notify:
           event: pass
           template: success_tagged_deploy_1
