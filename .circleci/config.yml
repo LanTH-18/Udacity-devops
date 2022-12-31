@@ -45,11 +45,12 @@ jobs:
     docker:
       - image: 'cimg/base:stable'
     steps:
-      - run: echo "deploy my app"
+      - run: deploy my app
       - slack/notify:
           event: fail
           template: basic_fail_1
           channel: C04H34X6N11
+          step_name: run
       - slack/notify:
           event: pass
           template: success_tagged_deploy_1
@@ -572,7 +573,6 @@ workflows:
           requires: [build-frontend]
       - deploy_and_notify:
           context: slack-secrets
-          step_name: scan-backend
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
