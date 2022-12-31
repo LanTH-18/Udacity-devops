@@ -1,0 +1,8 @@
+masterUser: postgres
+password: password123
+Port: 5432
+Endpoint (Hostname): database-1.c5e3g7ihckev.us-east-1.rds.amazonaws.com
+Instance identifier: database-1 
+
+
+aws cloudformation deploy --template-file cloudfront.yml --stack-name InitialStack --parameter-overrides WorkflowID=udapeople-lanhuynh

@@ -146,8 +146,7 @@ jobs:
             cd backend
             npm update
             npm i
-            npm audit fix --audit-level=critical --force
-            npm audit fix --audit-level=critical --force
+            npm audit fix
             npm audit --audit-level=critical
 
   deploy-infrastructure:
