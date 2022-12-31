@@ -42,13 +42,10 @@ commands:
             
 jobs:
   deploy_and_notify:
-    executor:
-      name: node/default
+    docker:
+      - image: 'cimg/base:stable'
     steps:
-      - checkout
-      - node/install-packages
-      - run:
-          command: npm run deploy
+      - run: echo "deploy my app"
       - slack/notify:
           channel: C04H34X6N11
           event: fail
