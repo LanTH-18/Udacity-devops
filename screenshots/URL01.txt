@@ -1,1 +1,1 @@
-https://github.com/thailx/udacity-awsdevops-project3
+https://github.com/LanTH-18/Udacity-devops-project3
