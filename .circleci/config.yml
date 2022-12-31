@@ -41,7 +41,7 @@ commands:
             fi 
             
 jobs:
-  deploy:
+  deploy_and_notify:
     executor:
       name: node/default
     steps:
@@ -570,10 +570,7 @@ workflows:
       - scan-frontend:
           requires: [build-frontend]
       - deploy_and_notify:
-          jobs:
-            - deploy:
-                context: slack-secrets
-
+          context: slack-secrets
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
