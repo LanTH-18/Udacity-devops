@@ -33,7 +33,7 @@ commands:
           command: |
             echo "Reverting Database  ########### "
             SUCCESS=$(curl --insecure https://kvdb.io/JgUE3mEmyThetxu5V5TRBW/migration_<<parameters.workflow_id>>)
-            if (( $SUCCESS == 1 ));
+            if [[ $SUCCESS == 1 ]];
             then
               cd ~/project/backend
               npm install
@@ -461,7 +461,7 @@ jobs:
             echo ${URL} 
             if curl -s ${URL} | grep "Welcome"
             then
-              return 0
+              return 1
             else
               return 1
             fi
